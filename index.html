@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entity: Video Evidence Analysis Demo</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
             color: #e0e0e0;
@@ -13,103 +18,227 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
         .header {
-            text-align: center; margin-bottom: 30px; padding: 20px;
-            background: rgba(0, 0, 0, 0.7); border-radius: 15px;
-            border: 2px solid #00ffff; box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
         }
+        
         .header h1 {
-            color: #00ffff; font-size: 2.5em;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); margin-bottom: 10px;
+            color: #00ffff;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            margin-bottom: 10px;
         }
-        .header p { color: #b0b0b0; font-size: 1.1em; }
+        
+        .header p {
+            color: #b0b0b0;
+            font-size: 1.1em;
+        }
+        
         .analysis-section {
-            background: rgba(0, 0, 0, 0.8); border-radius: 15px; padding: 25px;
-            margin-bottom: 25px; border: 1px solid #333;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid #333;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
         }
+        
         .section-title {
-            color: #00ffff; font-size: 1.8em; margin-bottom: 20px; text-align: center;
+            color: #00ffff;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
             text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
         }
-        .video-container { text-align: center; margin-bottom: 20px; }
+        
+        .video-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
         .video-container video {
-            width: 100%; max-width: 800px; border-radius: 10px;
-            border: 2px solid #00ffff; box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+            width: 100%;
+            max-width: 800px;
+            border-radius: 10px;
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
         }
+        
         .analysis-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px; margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
+        
         .analysis-card {
-            background: rgba(20, 20, 40, 0.9); border-radius: 10px; padding: 20px; border: 1px solid #444;
+            background: rgba(20, 20, 40, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #444;
         }
-        .analysis-card h3 { color: #ff6b6b; margin-bottom: 15px; font-size: 1.3em; }
+        
+        .analysis-card h3 {
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
         .analysis-item {
-            background: rgba(0, 0, 0, 0.5); padding: 10px; margin: 8px 0;
-            border-radius: 5px; border-left: 3px solid #00ffff;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border-left: 3px solid #00ffff;
         }
-        .timestamp { color: #ffff00; font-weight: bold; font-size: 0.9em; }
-        .confidence { color: #00ff00; font-size: 0.9em; float: right; }
+        
+        .timestamp {
+            color: #ffff00;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .confidence {
+            color: #00ff00;
+            font-size: 0.9em;
+            float: right;
+        }
+        
         .spirit-box-section, .estes-section {
-            background: rgba(20, 0, 40, 0.9); border-radius: 15px; padding: 25px;
-            margin-bottom: 25px; border: 2px solid #9d4edd;
+            background: rgba(20, 0, 40, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 2px solid #9d4edd;
             box-shadow: 0 0 20px rgba(157, 78, 221, 0.2);
         }
+        
         .method-title {
-            color: #9d4edd; font-size: 1.8em; margin-bottom: 20px; text-align: center;
+            color: #9d4edd;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
             text-shadow: 0 0 5px rgba(157, 78, 221, 0.5);
         }
+        
         .session-log {
-            background: rgba(0, 0, 0, 0.7); border-radius: 10px; padding: 20px;
-            margin: 15px 0; border: 1px solid #555;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 1px solid #555;
         }
+        
         .question {
-            color: #ffff00; font-weight: bold; margin-bottom: 10px; padding: 8px;
-            background: rgba(255, 255, 0, 0.1); border-radius: 5px;
+            color: #ffff00;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding: 8px;
+            background: rgba(255, 255, 0, 0.1);
+            border-radius: 5px;
         }
+        
         .response {
-            color: #ff6b6b; margin-bottom: 15px; padding: 10px;
-            background: rgba(255, 107, 107, 0.1); border-radius: 5px;
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 5px;
             border-left: 3px solid #ff6b6b;
         }
+        
         .interpretation {
-            color: #b0b0b0; font-style: italic; margin-bottom: 10px; padding: 8px;
-            background: rgba(176, 176, 176, 0.1); border-radius: 5px;
+            color: #b0b0b0;
+            font-style: italic;
+            margin-bottom: 10px;
+            padding: 8px;
+            background: rgba(176, 176, 176, 0.1);
+            border-radius: 5px;
         }
+        
         .community-section {
-            background: rgba(0, 40, 0, 0.9); border-radius: 15px; padding: 25px;
-            margin-top: 25px; border: 2px solid #00ff00;
+            background: rgba(0, 40, 0, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 25px;
+            border: 2px solid #00ff00;
             box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
         }
+        
         .community-title {
-            color: #00ff00; font-size: 1.8em; margin-bottom: 20px; text-align: center;
+            color: #00ff00;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
             text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
         }
-        .submit-form { display: grid; gap: 15px; margin-top: 20px; }
-        .form-group { display: flex; flex-direction: column; }
-        .form-group label { color: #00ff00; margin-bottom: 5px; font-weight: bold; }
+        
+        .submit-form {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            color: #00ff00;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
         .form-group input, .form-group textarea {
-            background: rgba(0, 0, 0, 0.7); border: 1px solid #00ff00;
-            border-radius: 5px; padding: 10px; color: #e0e0e0;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            padding: 10px;
+            color: #e0e0e0;
             font-family: 'Courier New', monospace;
         }
+        
         .form-group input:focus, .form-group textarea:focus {
-            outline: none; border-color: #00ffff;
+            outline: none;
+            border-color: #00ffff;
             box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
         }
+        
         .submit-btn {
-            background: linear-gradient(45deg, #00ff00, #00ffff); border: none;
-            border-radius: 10px; padding: 15px 30px; color: #000;
-            font-weight: bold; font-size: 1.1em; cursor: pointer;
+            background: linear-gradient(45deg, #00ff00, #00ffff);
+            border: none;
+            border-radius: 10px;
+            padding: 15px 30px;
+            color: #000;
+            font-weight: bold;
+            font-size: 1.1em;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
+        
         .submit-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3);
         }
-        .glitch { animation: glitch 2s infinite; }
+        
+        .glitch {
+            animation: glitch 2s infinite;
+        }
+        
         @keyframes glitch {
             0%, 100% { transform: translateX(0); }
             10% { transform: translateX(-2px); }
@@ -122,8 +251,15 @@
             80% { transform: translateX(1px); }
             90% { transform: translateX(-2px); }
         }
-        .pulse { animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
     </style>
 </head>
 <body>
@@ -132,6 +268,7 @@
             <h1 class="glitch">ENTITY: Video Evidence Analysis</h1>
             <p>Advanced AI-Powered Paranormal Investigation Demo</p>
         </div>
+        
         <div class="analysis-section">
             <h2 class="section-title">📹 Evidence Video Analysis</h2>
             <div class="video-container">
@@ -139,23 +276,23 @@
                     <label for="videoUpload" style="display: block; color: #00ffff; margin-bottom: 10px; font-weight: bold;">
                         📤 Upload Your Evidence Video:
                     </label>
-                    <input type="file" id="videoUpload" accept="video/*"
-                        style="background: rgba(0, 0, 0, 0.7); border: 2px solid #00ffff; border-radius: 5px; padding: 10px; color: #e0e0e0; width: 100%; max-width: 400px;">
+                    <input type="file" id="videoUpload" accept="video/*" 
+                           style="background: rgba(0, 0, 0, 0.7); border: 2px solid #00ffff; border-radius: 5px; padding: 10px; color: #e0e0e0; width: 100%; max-width: 400px;">
                 </div>
+                
                 <video id="evidenceVideo" controls poster="https://placehold.co/800x450/000000/00ffff?text=Upload+Your+Evidence+Video" style="display: block;">
                     <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
                     <p>Your browser doesn't support HTML5 video. <a href="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4">Download the video</a> instead.</p>
                 </video>
-                <button id="analyzeBtn" class="submit-btn pulse" style="margin: 20px auto 0 auto; display: block; width: 220px;">
-                    Analyze Video
-                </button>
-                <div id="analyzeStatus" style="text-align:center; color:#00ffff; margin-top:15px; display:none; font-weight:bold;">
-                    Analyzing video evidence...
-                </div>
+                
+                <button id="analyzeBtn" class="submit-btn pulse" style="margin: 20px auto 0 auto; display: block; width: 220px;">Analyze Video</button>
+                <div id="analyzeStatus" style="text-align:center; color:#00ffff; margin-top:15px; display:none; font-weight:bold;">Analyzing video evidence...</div>
+                
                 <p style="color: #b0b0b0; font-size: 0.9em; margin-top: 10px; text-align: center;">
                     <em>Upload your paranormal evidence video to see AI analysis in action</em>
                 </p>
             </div>
+            
             <div class="analysis-grid">
                 <div class="analysis-card">
                     <h3>🔍 Anomaly Detection</h3>
@@ -175,6 +312,7 @@
                         <div>Electromagnetic field fluctuation</div>
                     </div>
                 </div>
+                
                 <div class="analysis-card">
                     <h3>📊 Audio Analysis</h3>
                     <div class="analysis-item">
@@ -193,6 +331,7 @@
                         <div>Whisper pattern identified</div>
                     </div>
                 </div>
+                
                 <div class="analysis-card">
                     <h3>🌡️ Environmental Data</h3>
                     <div class="analysis-item">
@@ -211,6 +350,7 @@
                         <div>Atmospheric pressure change</div>
                     </div>
                 </div>
+                
                 <div class="analysis-card">
                     <h3>📍 Key Information Extracted</h3>
                     <div class="analysis-item">
@@ -228,76 +368,99 @@
                 </div>
             </div>
         </div>
+        
         <div class="spirit-box-section">
             <h2 class="method-title">📻 Spirit Box Session Analysis</h2>
+            
             <div class="session-log">
                 <h3 style="color: #9d4edd; margin-bottom: 15px;">Session #1 - Living Room Investigation</h3>
+                
                 <div class="question">Q: Is there anyone here with us tonight?</div>
                 <div class="response">Response: "Yes... here..."</div>
                 <div class="interpretation">Interpretation: Clear intelligent response, possible Class A EVP</div>
+                
                 <div class="question">Q: What is your name?</div>
                 <div class="response">Response: "Sarah... Sarah Miller..."</div>
                 <div class="interpretation">Interpretation: Full name provided, matches historical records</div>
+                
                 <div class="question">Q: How did you pass away?</div>
                 <div class="response">Response: "Fire... couldn't escape..."</div>
                 <div class="interpretation">Interpretation: Correlates with 1923 house fire documented in local records</div>
+                
                 <div class="question">Q: Do you need help crossing over?</div>
                 <div class="response">Response: "Find... my... children..."</div>
                 <div class="interpretation">Interpretation: Unfinished business - searching for family members</div>
             </div>
+            
             <div class="session-log">
                 <h3 style="color: #9d4edd; margin-bottom: 15px;">Session #2 - Basement Investigation</h3>
+                
                 <div class="question">Q: Are you the same spirit from upstairs?</div>
                 <div class="response">Response: "No... different... angry..."</div>
                 <div class="interpretation">Interpretation: Multiple entities present, emotional state indicated</div>
+                
                 <div class="question">Q: Why are you angry?</div>
                 <div class="response">Response: "Trapped... can't leave..."</div>
                 <div class="interpretation">Interpretation: Possible earthbound spirit, needs assistance</div>
+                
                 <div class="question">Q: What year did you die?</div>
                 <div class="response">Response: "Eighteen... forty... seven..."</div>
                 <div class="interpretation">Interpretation: Historical timeframe, predates house construction</div>
             </div>
         </div>
+        
         <div class="estes-section">
             <h2 class="method-title">🎧 Estes Method Session Analysis</h2>
+            
             <div class="session-log">
                 <h3 style="color: #9d4edd; margin-bottom: 15px;">Estes Session #1 - Master Bedroom</h3>
                 <p style="color: #b0b0b0; margin-bottom: 15px;"><em>Investigator wearing headphones with spirit box, unable to hear questions</em></p>
+                
                 <div class="question">Q: Can you tell us your name?</div>
                 <div class="response">Estes Response: "Elizabeth... Elizabeth..."</div>
                 <div class="interpretation">Interpretation: Name repetition suggests urgency or emphasis</div>
+                
                 <div class="question">Q: How old were you when you passed?</div>
                 <div class="response">Estes Response: "Twenty-three... so young..."</div>
                 <div class="interpretation">Interpretation: Emotional response, awareness of premature death</div>
+                
                 <div class="question">Q: What happened to you?</div>
                 <div class="response">Estes Response: "Sickness... fever... couldn't breathe..."</div>
                 <div class="interpretation">Interpretation: Possible influenza or respiratory illness</div>
+                
                 <div class="question">Q: Is this your room?</div>
                 <div class="response">Estes Response: "Mine... always mine... won't leave..."</div>
                 <div class="interpretation">Interpretation: Strong attachment to location, territorial behavior</div>
             </div>
+            
             <div class="session-log">
                 <h3 style="color: #9d4edd; margin-bottom: 15px;">Estes Session #2 - Children's Room</h3>
                 <p style="color: #b0b0b0; margin-bottom: 15px;"><em>Different investigator conducting Estes method</em></p>
+                
                 <div class="question">Q: Are there children here?</div>
                 <div class="response">Estes Response: "Playing... always playing... hide and seek..."</div>
                 <div class="interpretation">Interpretation: Child spirits present, playful energy detected</div>
+                
                 <div class="question">Q: What are your names?</div>
                 <div class="response">Estes Response: "Tommy... and... sister... Mary..."</div>
                 <div class="interpretation">Interpretation: Sibling spirits, family unit remains together</div>
+                
                 <div class="question">Q: Where is your mother?</div>
                 <div class="response">Estes Response: "Looking... she's looking... can't find us..."</div>
                 <div class="interpretation">Interpretation: Separation anxiety, mother (Sarah) searching for children</div>
+                
                 <div class="question">Q: Do you want to be with your mother?</div>
                 <div class="response">Estes Response: "Yes... help... bring her here..."</div>
                 <div class="interpretation">Interpretation: Family reunion needed for crossing over</div>
             </div>
         </div>
+        
         <div class="community-section">
             <h2 class="community-title">🤝 Community Evidence Submission</h2>
             <p style="text-align: center; margin-bottom: 20px; color: #b0b0b0;">
                 Help us solve this case and assist these spirits in finding peace. Your evidence and insights matter.
             </p>
+            
             <div class="analysis-grid">
                 <div class="analysis-card" style="background: rgba(0, 40, 0, 0.5);">
                     <h3 style="color: #00ff00;">🔍 Case Summary</h3>
@@ -314,6 +477,7 @@
                         <strong>Tertiary Spirit:</strong> Elizabeth (Young woman, died of illness)
                     </div>
                 </div>
+                
                 <div class="analysis-card" style="background: rgba(0, 40, 0, 0.5);">
                     <h3 style="color: #00ff00;">📋 Research Needed</h3>
                     <div class="analysis-item">
@@ -330,6 +494,7 @@
                     </div>
                 </div>
             </div>
+            
             <form class="submit-form">
                 <div class="form-group">
                     <label for="evidence-type">Evidence Type:</label>
@@ -343,36 +508,44 @@
                         <option>Photographic Evidence</option>
                     </select>
                 </div>
+                
                 <div class="form-group">
                     <label for="location">Location/Room:</label>
                     <input type="text" id="location" placeholder="e.g., Master Bedroom, Basement, Kitchen">
                 </div>
+                
                 <div class="form-group">
                     <label for="timestamp">Date/Time of Evidence:</label>
                     <input type="datetime-local" id="timestamp">
                 </div>
+                
                 <div class="form-group">
                     <label for="description">Detailed Description:</label>
                     <textarea id="description" rows="4" placeholder="Describe what you experienced, heard, or discovered..."></textarea>
                 </div>
+                
                 <div class="form-group">
                     <label for="names">Names Mentioned:</label>
                     <input type="text" id="names" placeholder="Any names heard or discovered">
                 </div>
+                
                 <div class="form-group">
                     <label for="dates">Historical Dates:</label>
                     <input type="text" id="dates" placeholder="Any dates mentioned or researched">
                 </div>
+                
                 <button type="submit" class="submit-btn pulse">Submit Evidence to Help These Spirits</button>
             </form>
         </div>
     </div>
+    
     <script>
-        // Submission feedback
-        document.querySelector('.submit-btn').addEventListener('click', function(e) {
+        // Community form submission
+        document.querySelector('.submit-form .submit-btn').addEventListener('click', function(e) {
             e.preventDefault();
             alert('Thank you for your submission! Your evidence will help us assist these spirits in finding peace. The community appreciates your contribution to this important work.');
         });
+        
         // Video upload functionality
         document.getElementById('videoUpload').addEventListener('change', function(event) {
             const file = event.target.files[0];
@@ -381,24 +554,31 @@
                 const url = URL.createObjectURL(file);
                 video.src = url;
                 video.load();
+                
                 // Show upload success message
-                const uploadLabel = document.querySelector('label[for=\"videoUpload\"]');
+                const uploadLabel = document.querySelector('label[for="videoUpload"]');
                 uploadLabel.innerHTML = '✅ Evidence Video Uploaded Successfully!';
                 uploadLabel.style.color = '#00ff00';
+                
+                // Reset after 3 seconds
                 setTimeout(() => {
                     uploadLabel.innerHTML = '📤 Upload Your Evidence Video:';
                     uploadLabel.style.color = '#00ffff';
                 }, 3000);
             }
         });
-        // Simulated AI analysis
+        
+        // Video Analysis Simulation
         document.getElementById('analyzeBtn').addEventListener('click', function() {
             const status = document.getElementById('analyzeStatus');
             status.style.display = 'block';
             status.textContent = 'Analyzing video evidence...';
+            
+            // Simulate analysis delay
             setTimeout(() => {
-                status.textContent = 'Analysis complete! Results below.';
+                status.textContent = 'Analysis complete! Results updated below.';
                 setTimeout(() => { status.style.display = 'none'; }, 2000);
+
                 // Simulate updating analysis sections with demo data
                 // Anomaly Detection
                 document.querySelectorAll('.analysis-card')[0].innerHTML = `
@@ -419,6 +599,7 @@
                         <div>Unexplained light anomaly</div>
                     </div>
                 `;
+                
                 // Audio Analysis
                 document.querySelectorAll('.analysis-card')[1].innerHTML = `
                     <h3>📊 Audio Analysis</h3>
@@ -438,6 +619,7 @@
                         <div>Whisper: "Help us"</div>
                     </div>
                 `;
+                
                 // Environmental Data
                 document.querySelectorAll('.analysis-card')[2].innerHTML = `
                     <h3>🌡️ Environmental Data</h3>
@@ -457,6 +639,7 @@
                         <div>Atmospheric pressure change</div>
                     </div>
                 `;
+                
                 // Key Information Extracted
                 document.querySelectorAll('.analysis-card')[3].innerHTML = `
                     <h3>📍 Key Information Extracted</h3>
@@ -473,6 +656,7 @@
                         <strong>Times:</strong> 2:13 AM, 4:44 AM, Dusk
                     </div>
                 `;
+                
                 // Spirit Box Session
                 document.querySelectorAll('.spirit-box-section .session-log')[0].innerHTML = `
                     <h3 style="color: #9d4edd; margin-bottom: 15px;">Session #1 - Parlor</h3>
@@ -483,6 +667,7 @@
                     <div class="response">Response: "Can't leave..."</div>
                     <div class="interpretation">Interpretation: Possible earthbound spirit</div>
                 `;
+                
                 // Estes Method Session
                 document.querySelectorAll('.estes-section .session-log')[0].innerHTML = `
                     <h3 style="color: #9d4edd; margin-bottom: 15px;">Estes Session #1 - Cellar</h3>
@@ -493,6 +678,7 @@
                 `;
             }, 2200);
         });
+        
         // Add glitch effect to anomaly detections
         setInterval(() => {
             const anomalies = document.querySelectorAll('.analysis-item');
